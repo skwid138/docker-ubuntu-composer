@@ -1,0 +1,16 @@
+version: "3"
+services:
+  app:
+    container_name: cig-composer
+    # Skip build if an image is cached
+    build:
+      context: .
+    restart: never
+    entrypoint: /usr/local/bin/composer
+    command: ["update"]
+    volumes:
+      # Make wp_id repo available to docker
+      - /Users/hunterrancourt/Sites/cig/investingdaily:/var/composer
+    environment: 
+    # Add the output from `cat ~/.composer/auth.json`
+      COMPOSER_AUTH: 
